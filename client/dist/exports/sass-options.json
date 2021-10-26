@@ -1,0 +1,76 @@
+[
+    {
+        "oid": "theme",
+        "cid": "project",
+        "data": {
+            "colors": {
+                "primary": "#2e9cb8",
+                "secondary": "#3d3931",
+                "success": "#cce678",
+                "danger": "#e6787d",
+                "info": "#4bafee",
+                "warning": "#eee84b",
+                "system": [
+                    "#c6530c",
+                    "#ef8646"
+                ],
+                "text-color": [
+                    "#3a3b39",
+                    "#fff9ea"
+                ],
+                "background-color": [
+                    "#ffffff",
+                    "#202120"
+                ]
+            },
+            "config": {
+                "brightness": {
+                    "offset-brighten": 20,
+                    "offset-dim": 20,
+                    "saturation-brighten": [
+                        0,
+                        0
+                    ],
+                    "saturation-dim": [
+                        0,
+                        0
+                    ]
+                },
+                "relative-light-limit": true,
+                "gray": {
+                    "saturation": "5%",
+                    "hue": "#0000ff"
+                },
+                "inverse": false,
+                "colors-vars-mode": false,
+                "inverse-support": true
+            },
+            "palettes": {
+                "primary": {
+                    "lighten": "#e8f2c7",
+                    "darken": "#4c5d15"
+                },
+                "secondary": {
+                    "lighten": "#f5f3e6",
+                    "darken": "#2a2925"
+                }
+            },
+            "theme-name": "default"
+        },
+        "id": "project__theme"
+    },
+    {
+        "oid": "config",
+        "cid": "project",
+        "data": {
+            "available-theme-colors": "extra"
+        },
+        "id": "project__config"
+    },
+    {
+        "oid": "config",
+        "cid": "app",
+        "data": {},
+        "id": "app__config"
+    }
+]

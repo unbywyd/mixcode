@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <un-pipe sass="app" main="app-mixcode"></un-pipe>
+    <title>My page</title>
+    
+    
+</head>
+<body> 
+    <div>
+        <!-- content -->
+        <div class="@" id="acf_mixcode">
+            <div class="@-loader" v-if="loading" role="alert">Loading...</div>
+            <div class="@-header">
+                <h2 class="@-heading">ACF Mixcode Generator</h2>
+                <div class="@-desc">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, aut!</p>
+                </div>
+                <div class="@-stepper">
+                    <div class="@-stepper-step" :class="{'disabled': !step1Valid && activeStep != 1, 'completed': step1Valid}">
+                        <h3 class="@-stepper-step-heading">
+                            <button
+                            :aria-expanded="activeStep == 1"
+                            aria-controls="acf_mixcode_step_region_1"
+                            @click.prevent="activeStep = 1"
+                            id="acf_mixcode_step_btn_1"
+                            :disable="activeStep == 1"
+                            :aria-disabled="activeStep == 1">
+                            <span><span class="@-stepper-step-number">1</span> Template selection <span class="@-stepper-step-desc">Choose which template to apply to the data</span></span>
+                            {{{icon "Caret_down"}}}
+                        </button>
+                        </h3>
+                        <div v-if="activeStep == 1" class="@-stepper-step-region" id="acf_mixcode_step_region_1" aria-labelledby="acf_mixcode_step_btn_1" role="region">
+                            <span class="@-selected" v-if="templateSelected">
+                                <span v-html="templateSelected"></span>
+                                <button @click.prevent="clearTemplateId">{{{icon "close_circle"}}}</button>
+                            </span>
+                            <autocomplete v-else @submit="setTemplate" :defaultValue="templateSelected" :search="searchTemplate" aria-label="Search template by title" placeholder="Search template by title"></autocomplete>
+                        </div>
+                    </div>
+                    <div class="@-stepper-step" :class="{'disabled': !step2Valid && activeStep != 2, 'completed': step2Valid}">                        
+                        <h3 class="@-stepper-step-heading">
+                            <button
+                            :aria-expanded="activeStep == 2"
+                            aria-controls="acf_mixcode_step_region_2"
+                            id="acf_mixcode_step_btn_2"
+                            @click.prevent="activeStep = 2"
+                            :disabled="activeStep == 2"
+                            :aria-disabled="activeStep == 2">
+                            <span><span class="@-stepper-step-number">2</span> Selecting a data document <span class="@-stepper-step-desc">Please select your post with ACF fields</span></span>
+                            {{{icon "Caret_down"}}}
+                        </button>
+                        </h3>
+                        <div v-if="activeStep == 2" class="@-stepper-step-region" id="acf_mixcode_step_region_2" aria-labelledby="acf_mixcode_step_btn_2" role="region">
+                            <div class="@-form">                              
+                                <div>
+                                    <select name="post_type" class="@-select" @change="setPostType" ref="post_type">
+                                        <option value="" :selected="!postType" disabled>Post type</option>
+                                        <option :value="post" :selected="postType == post" v-for="post of postTypes" :v-key="post" v-html="post"></option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div>
+                                    <span class="@-selected" v-if="postSelected">
+                                        <span v-html="postSelected"></span>
+                                        <button @click.prevent="clearPostId">{{{icon "close_circle"}}}</button>
+                                    </span>
+                                    <autocomplete v-else @submit="setPost" :defaultValue="postSelected" :disabled="!postType" :search="searchPosts" aria-label="Search post by title" placeholder="Search post by title"></autocomplete>
+                                </div>                      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="@-stepper-step" :class="{'disabled': !step3Valid && activeStep != 3, 'completed': step3Valid }">
+                        <h3 class="@-stepper-step-heading">
+                            <button
+                            :aria-expanded="activeStep == 3"
+                            aria-controls="acf_mixcode_step_region_3"
+                            id="acf_mixcode_step_btn_3"
+                            @click.prevent="activeStep = 3"
+                            :disabled="activeStep == 3"
+                            :aria-disabled="activeStep == 3">
+                            <span><span class="@-stepper-step-number">3</span> Data selection <span class="@-stepper-step-desc">Choose which fields to include in the template</span></span>
+                            {{{icon "Caret_down"}}}
+                        </button>
+                        </h3>
+                        <div v-if="activeStep == 3" class="@-stepper-step-region" id="acf_mixcode_step_region_3" aria-labelledby="acf_mixcode_step_btn_3" role="region">
+                            <p>Select the ACF field that will be passed to the template</p>
+                            <div>
+                                <select @change="setDataKey" ref="data_key" class="@-select">
+                                    <option value="" disabled :selected="!dataKey">Select</option>
+                                    <option value="all" :selected="dataKey == 'all'">Pass all ACF fields</option>
+                                    <option :value="key" :selected="dataKey == key" v-for="key in dataKeys" v-html="key"></option>
+                                </select>
+                                <br>
+                            </div>
+                            <json-viewer
+                            :value="jsonData"
+                            :expand-depth=5
+                            copyable
+                            boxed
+                            sort></json-viewer>
+                        </div>
+                    </div>                    
+                    <div class="@-stepper-step" :class="{'disabled': activeStep != 4 && !step4Valid }">
+                        <h3 class="@-stepper-step-heading">
+                            <button
+                            :aria-expanded="activeStep == 4"
+                            @click.prevent="onGenerator"
+                            aria-controls="acf_mixcode_step_region_4"
+                            id="acf_mixcode_step_btn_4"
+                            :disabled="activeStep == 4"
+                            :aria-disabled="activeStep == 4">
+                            <span>Get shortcode <span class="@-stepper-step-desc">Get a ready-to-use shortcode</span></span>
+                            {{{icon "Caret_down"}}}
+                        </button>
+                        </h3>
+                        <div v-if="activeStep == 4" class="@-stepper-step-region" id="acf_mixcode_step_region_4" aria-labelledby="acf_mixcode_step_btn_4" role="region">
+                            <div class="@-shortcode">[Test]</div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.min.js"></script>
+</body>
+</html>

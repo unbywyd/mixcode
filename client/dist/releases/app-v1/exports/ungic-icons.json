@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Caret down",
+        "sourcename": "Caret down",
+        "id": "Caret_down",
+        "path": "Caret down.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Caret_down\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.53 8.97a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06L12 12.44l3.47-3.47a.75.75 0 0 1 1.06 0z\"></path></svg>",
+        "codepoint": 61696,
+        "unicode": ""
+    },
+    {
+        "name": "Caret left",
+        "sourcename": "Caret left",
+        "id": "Caret_left",
+        "path": "Caret left.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Caret_left\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M14.03 7.47a.75.75 0 0 1 0 1.06L10.56 12l3.47 3.47a.75.75 0 1 1-1.06 1.06l-4-4a.75.75 0 0 1 0-1.06l4-4a.75.75 0 0 1 1.06 0z\"></path></svg>",
+        "codepoint": 61697,
+        "unicode": ""
+    },
+    {
+        "name": "Caret right",
+        "sourcename": "Caret right",
+        "id": "Caret_right",
+        "path": "Caret right.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Caret_right\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.97 7.47a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06L13.44 12 9.97 8.53a.75.75 0 0 1 0-1.06z\"></path></svg>",
+        "codepoint": 61698,
+        "unicode": ""
+    },
+    {
+        "name": "Caret up",
+        "sourcename": "Caret up",
+        "id": "Caret_up",
+        "path": "Caret up.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Caret_up\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.53 14.03a.75.75 0 0 1-1.06 0L12 10.56l-3.47 3.47a.75.75 0 0 1-1.06-1.06l4-4a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06z\"></path></svg>",
+        "codepoint": 61699,
+        "unicode": ""
+    },
+    {
+        "name": "Check",
+        "sourcename": "Check",
+        "id": "Check",
+        "path": "Check.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Check\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M18.03 7.97a.75.75 0 0 1 0 1.06l-7 7a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06l3.47 3.47 6.47-6.47a.75.75 0 0 1 1.06 0z\"></path></svg>",
+        "codepoint": 61700,
+        "unicode": ""
+    },
+    {
+        "name": "close circle",
+        "sourcename": "close-circle",
+        "id": "close_circle",
+        "path": "close-circle.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"close_circle\"><path d=\"M12 22.75C6.07 22.75 1.25 17.93 1.25 12S6.07 1.25 12 1.25 22.75 6.07 22.75 12 17.93 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z\"></path><path d=\"M9.17 15.58c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l5.66-5.66c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06L9.7 15.36c-.14.15-.34.22-.53.22z\"></path><path d=\"M14.83 15.58c-.19 0-.38-.07-.53-.22L8.64 9.7a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l5.66 5.66c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22z\"></path></svg>",
+        "codepoint": 61701,
+        "unicode": ""
+    },
+    {
+        "name": "pluc circle m",
+        "sourcename": "pluc-circle-m",
+        "id": "pluc_circle_m",
+        "path": "pluc-circle-m.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"pluc_circle_m\"><path d=\"M13 11h4v2h-4v4h-2v-4H7v-2h4V7h2v4z\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm10-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z\"></path></svg>",
+        "codepoint": 61702,
+        "unicode": ""
+    },
+    {
+        "name": "plus m",
+        "sourcename": "plus-m",
+        "id": "plus_m",
+        "path": "plus-m.svg",
+        "svg": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" id=\"plus_m\"><path d=\"M11 13v9h2v-9h9v-2h-9V2h-2v9H2v2h9z\"></path></svg>",
+        "codepoint": 61703,
+        "unicode": ""
+    }
+]

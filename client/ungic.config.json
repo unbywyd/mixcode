@@ -1,0 +1,177 @@
+{
+    "mode": "development",
+    "server": {
+        "port": 2020
+    },
+    "version": "1.0.0",
+    "build": {
+        "releases": {
+            "default": {
+                "saveAllAssets": true,
+                "host": "",
+                "noConflict": false,
+                "scssBuildName": "default",
+                "htmlBuildName": "default",
+                "iconsBuildName": "default",
+                "includeOnlyUsedComponents": false,
+                "combineIcons": true,
+                "combineScssComponents": true,
+                "urlsOptimization": true
+            }
+        },
+        "plugins": {
+            "html": {
+                "dev": {
+                    "formatting": "beautify",
+                    "validation": false
+                },
+                "release": {
+                    "configs": {
+                        "default": {
+                            "formatting": "beautify",
+                            "validation": false,
+                            "includeLocalStyles": false,
+                            "mergeInternalStyles": false,
+                            "optimizeInternalStyles": false,
+                            "includeLocalScripts": false,
+                            "internalScriptsToFooter": false,
+                            "externalScriptsToFooter": false,
+                            "mergeInternalScripts": false,
+                            "optimizeInternalScripts": false
+                        }
+                    },
+                    "build": {
+                        "default": {
+                            "pages": "*",
+                            "excludePages": [],
+                            "configId": "default"
+                        }
+                    }
+                }
+            },
+            "scss": {
+                "dev": {
+                    "inverse": true,
+                    "autoprefixer": true,
+                    "defaultInverse": false,
+                    "direction": "ltr",
+                    "oppositeDirection": true,
+                    "theme": "default"
+                },
+                "release": {
+                    "configs": {
+                        "default": {
+                            "themeMode": "external",
+                            "inverseMode": "combined",
+                            "inverse": true,
+                            "defaultInverse": false,
+                            "autoprefixer": true,
+                            "direction": "ltr",
+                            "oppositeDirection": true
+                        }
+                    },
+                    "build": {
+                        "default": {
+                            "configId": "default",
+                            "themes": [],
+                            "defaultTheme": "viola",
+                            "components": "*",
+                            "excludeComponents": []
+                        }
+                    }
+                }
+            },
+            "icons": {
+                "dev": {
+                    "svgIconsMode": "svgSprite",
+                    "sprites": true,
+                    "svgIcons": true
+                },
+                "release": {
+                    "configs": {
+                        "default": {
+                            "svgIconsMode": "svgSprite"
+                        }
+                    },
+                    "build": {
+                        "default": {
+                            "configId": "default",
+                            "svgIcons": true,
+                            "sprites": "**/*.png"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "author": "unbyw",
+    "openInBrowser": true,
+    "fs": {
+        "dirs": {
+            "source": "source",
+            "dist": "dist",
+            "temp": "temp"
+        },
+        "dist": {
+            "css": "css",
+            "fonts": "fonts",
+            "img": "img",
+            "js": "js"
+        },
+        "source": {
+            "scss": "scss",
+            "html": "pages",
+            "icons": "icons",
+            "assets": "assets"
+        }
+    },
+    "plugins": {
+        "scss": {
+            "dirAttribute": "dir",
+            "htmlIsRootElement": true,
+            "generateThemeColorsVars": false,
+            "themeColorsVarsMode": false,
+            "cleancss": true
+        },
+        "html": {
+            "beautify": {},
+            "minifier": {},
+            "cheerio": {
+                "decodeEntities": false
+            },
+            "replaceAmpToSymbol": true,
+            "dirAttribute": "dir",
+            "cleancss": {},
+            "relativeSrc": false,
+            "deleteFromDist": false
+        },
+        "icons": {
+            "startCodepoint": 61696,
+            "sprites": {
+                "className": "sprite",
+                "maxWidth": 70,
+                "maxHeight": false
+            },
+            "svgSprite": {
+                "width": "2em",
+                "height": "2em",
+                "external": false,
+                "removeColors": true,
+                "className": "svg-icon"
+            },
+            "fonts": {
+                "name": "ungic",
+                "fixedWidth": false,
+                "fontHeight": 512,
+                "centerHorizontally": true,
+                "normalize": true,
+                "fontWeight": 400,
+                "className": "icon",
+                "fontSize": "2em",
+                "lables": true
+            }
+        }
+    },
+    "verbose": false,
+    "name": "client"
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <un-pipe sass="app" main="app-mixcode"></un-pipe>
+    <title>My page</title>
+
+</head>
+<body> 
+    <div class="@">
+        <div class="@-translates" id="mixcode-translates">
+            <h2>Polylang translations</h2>
+            <p>Add original English string, then use the given slug in templates</p>
+            <div class="@-translates-row" v-for="str in strs" :v-key="str.id">
+                <div class="@-translates-cell">
+                    <label :for="'mixcode_string_' + str.id">String</label>
+                    <input type="text" :id="'mixcode_string_' + str.id" @input.prevent="setValue(str, $event)" :value="str.value" class="@-input">
+                    <p v-if="str.hasError" class="@-alert error">Duplicate value</p>
+                </div>
+                <div class="@-translates-cell has-control">
+                    <span>
+                        <label :for="'mixcode_slug_string_'  + str.id">Slug</label>
+                        <input type="text" disabled :id="'mixcode_slug_string_'  + str.id" :value="getSlug(str)" class="@-input">
+                    </span>
+                    <button @click.prevent="onCopy('mixcode_string_' + str.id)">Copy</button>
+                </div>
+            </div>
+            <div class="@-translates-footer">
+                <button class="@-translates-btn add" :disabled="lastEmpty || lastHasError" @click.prevent="addNew">Add new string {{{icon "pluc_circle_m"}}}</button>
+                <button class="@-translates-btn submit" :disabled="lastHasError">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/translates.min.js"></script>
+</body>
+</html>

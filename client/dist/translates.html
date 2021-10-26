@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- app:app-mixcode -->
+    <link rel="stylesheet" data-component="app" href="http://127.0.0.1:2020/css/app.css?v=1635079021362">
+    <title>My page</title>
+
+    <link rel="stylesheet" href="http://127.0.0.1:2020/ungic/css/devtools.css">
+</head>
+
+<body ungic-dev="true">
+    <div class="app-mixcode">
+        <div class="app-mixcode-translates" id="mixcode-translates">
+            <h2>Polylang translations</h2>
+            <p>Add original English string, then use the given slug in templates</p>
+            <div class="app-mixcode-translates-row" v-for="str in strs" :v-key="str.id">
+                <div class="app-mixcode-translates-cell">
+                    <label :for="'mixcode_string_' + str.id">String</label>
+                    <input type="text" :id="'mixcode_string_' + str.id" @input.prevent="setValue(str, $event)" :value="str.value" class="app-mixcode-input">
+                    <p v-if="str.hasError" class="app-mixcode-alert error">Duplicate value</p>
+                </div>
+                <div class="app-mixcode-translates-cell has-control">
+                    <span>
+                        <label :for="'mixcode_slug_string_'  + str.id">Slug</label>
+                        <input type="text" disabled="" :id="'mixcode_slug_string_'  + str.id" :value="getSlug(str)" class="app-mixcode-input">
+                    </span>
+                    <button @click.prevent="onCopy('mixcode_string_' + str.id)">Copy</button>
+                </div>
+            </div>
+            <div class="app-mixcode-translates-footer">
+                <button class="app-mixcode-translates-btn add" :disabled="lastEmpty || lastHasError" @click.prevent="addNew">Add new string <svg class="ungic-icon" role="img" aria-labelledby="un_b9yaz0czn" width="2em" height="2em">
+                        <title id="un_b9yaz0czn">pluc circle m</title>
+                        <use xlink:href="#svg-icon-pluc_circle_m"></use>
+                    </svg></button>
+                <button class="app-mixcode-translates-btn submit" :disabled="lastHasError">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/translates.min.js"></script>
+
+    <script src="http://127.0.0.1:2020/ungic/js/dist/pipe.min.js" data-connect="http://127.0.0.1:2020" data-src="translates.html"></script><svg class="ungic-svg-sprite" style="display:none">
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-Caret_down">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.53 8.97a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06L12 12.44l3.47-3.47a.75.75 0 0 1 1.06 0z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-Caret_left">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.03 7.47a.75.75 0 0 1 0 1.06L10.56 12l3.47 3.47a.75.75 0 1 1-1.06 1.06l-4-4a.75.75 0 0 1 0-1.06l4-4a.75.75 0 0 1 1.06 0z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-Caret_right">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.97 7.47a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06L13.44 12 9.97 8.53a.75.75 0 0 1 0-1.06z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-Caret_up">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.53 14.03a.75.75 0 0 1-1.06 0L12 10.56l-3.47 3.47a.75.75 0 0 1-1.06-1.06l4-4a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-Check">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.03 7.97a.75.75 0 0 1 0 1.06l-7 7a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06l3.47 3.47 6.47-6.47a.75.75 0 0 1 1.06 0z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-close_circle">
+            <path d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12S6.07 1.25 12 1.25 22.75 6.07 22.75 12 17.93 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path>
+            <path d="M9.17 15.58c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l5.66-5.66c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06L9.7 15.36c-.14.15-.34.22-.53.22z"></path>
+            <path d="M14.83 15.58c-.19 0-.38-.07-.53-.22L8.64 9.7a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l5.66 5.66c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-pluc_circle_m">
+            <path d="M13 11h4v2h-4v4h-2v-4H7v-2h4V7h2v4z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm10-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor" id="svg-icon-plus_m">
+            <path d="M11 13v9h2v-9h9v-2h-9V2h-2v9H2v2h9z"></path>
+        </symbol>
+    </svg>
+</body>
+
+</html>

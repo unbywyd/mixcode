@@ -1,0 +1,66 @@
+[
+    {
+        "oid": "theme",
+        "cid": "project",
+        "data": {
+            "colors": {
+                "primary": "#817ee9",
+                "secondary": "#1d1d27",
+                "success": "#1bc167",
+                "danger": "#ff5252",
+                "info": "#2196f3",
+                "warning": "#ffc94b",
+                "system": "#6a67d0",
+                "text-color": [
+                    "#2c2c38",
+                    "#f6f5fc"
+                ],
+                "background-color": [
+                    "#f6f5fc",
+                    "#2c2c38"
+                ]
+            },
+            "config": {
+                "brightness": {
+                    "offset-brighten": 0,
+                    "offset-dim": 0,
+                    "saturation-brighten": [
+                        0,
+                        0
+                    ],
+                    "saturation-dim": [
+                        0,
+                        0
+                    ]
+                },
+                "relative-light-limit": true,
+                "gray": {
+                    "saturation": [
+                        "20%",
+                        "12%"
+                    ],
+                    "hue": "#0000ff"
+                },
+                "inverse": false,
+                "colors-vars-mode": false,
+                "inverse-support": true
+            },
+            "theme-name": "viola"
+        },
+        "id": "project__theme"
+    },
+    {
+        "oid": "config",
+        "cid": "project",
+        "data": {
+            "available-theme-colors": "extra"
+        },
+        "id": "project__config"
+    },
+    {
+        "oid": "config",
+        "cid": "app",
+        "data": {},
+        "id": "app__config"
+    }
+]
