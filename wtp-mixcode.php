@@ -6,7 +6,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: Mixcode by WebTo.Pro
- * Version:     1.0
+ * Version:     1.0.0
  * Description: Addition for ACF plugin.
  * Author:      Unbywyd
  * Plugin URI:  https://webto.pro
@@ -21,6 +21,7 @@ define('MIXCODE_PLUGIN_DEV_MODE', false);
 
 require_once(MIXCODE_DIR . 'libs/twig/twigLoader.php');
 require_once(MIXCODE_DIR . 'incs/ajax.php');
+
 
 use WTP_MIXCODE_TWIG\twigLoader as twigLoader;
 use WTP_MIXCODE_AJAX\Ajax as mixcodeAjax;
@@ -137,22 +138,46 @@ class MIXCODE {
   function meta_box_template_fields($post) {
     ?>
     <div class="app-mixcode-forms">
-      <p class="notice notice-info notice-alt">You can use <b>mixcode_widget_id</b> string that contains the unique id of this widget, examples: <b> In tempate</b> {{mixcode_widget_id}}, <b>in js</b>: alert(mixcode_widget_id), <b>in css</b> .mixcode_widget_id
+      <div class="notice notice-info">
+        <p>You can use <b>mixcode_widget_id</b> string that contains the unique id of this widget, examples: <b> In tempate</b> {{mixcode_widget_id}}, <b>in js</b>: alert(mixcode_widget_id), <b>in css</b> .mixcode_widget_id
     </p>
-      <p class="notice notice-info notice-alt">You can use include "template_post_id" method for nested use.</p>
+        <p>You can use include "<b>template_post_id</b>" method in your twig templates for nested use, example:</p>
+<pre>
+// Include template with post_id 60 and pass it a data object      
+{% include "60" with {name:'Spinosaurus'}%}
+</pre>
+        <h2>Use the following available methods and helpers in your twig templates:</h2>
+        <ol>
+          <li><b>content</b> - Get global post content</li>
+          <li><b>title</b> - Get global post title</li>
+          <li><b>the_post</b> - Get global post object</li>
+          <li><b>render</b> - Render an inline twig template with data</li>
+          <li><b>uid</b> - Generate a random unique id</li>
+          <li><b>bloginfo</b> - Displays information about the blog. Wordpress method, see a documentation</li>
+          <li><b>debug</b> - Outputting data to the screen, by default uses the <b>d()</b> method from the Kint Debugger plugin, and otherwise outputs data using <b>var_dump()</b></li>
+          <li><b>is_admin</b> - Checks if the current user is an admin</li>
+          <li><b>json</b>- Displays data in JSON format</li>
+          <li><b>print_func</b>- Calls a function that displays information on the screen, stores it in memory, returns the result</li>
+          <li><b>do_shortcode</b> - Search content for shortcodes and filter shortcodes through their hooks. See wordpress documentation</li>
+          <li><b>t</b> - Displays a string previously registered in polylang using pll__ polylang method. See documentation of polylang</li>
+          <li><b>render_t</b>- First compile the twig template and then translate it using the pll_ method</li>
+          <li><b>call</b>- Calls any other function with arguments</li>
+        </ol>
+
+      </div>
       <div class="app-mixcode-form-group">
         <label for="mixcode_template"><b>Twig template</b></label>
-<textarea data-mode="twig" class="mixcode_codemirror" name="mixcode[template]" id="mixcode_template" cols="30" rows="10"><?php echo get_post_meta($post->ID, 'template', true); ?></textarea>
+<textarea data-mode="twig" class="mixcode_codemirror" name="mixcode[template]" id="mixcode_template" cols="30" rows="10"><?php echo esc_html(get_post_meta($post->ID, 'template', true)); ?></textarea>
       </div>
       <hr>
       <div class="app-mixcode-form-group">
         <label for="mixcode_template_css"><b>CSS</b></label>
-        <textarea data-mode="css" class="mixcode_codemirror" name="mixcode[css]" id="mixcode_template_css" cols="30" rows="10"><?php echo get_post_meta($post->ID, 'css', true); ?></textarea>
+        <textarea data-mode="css" class="mixcode_codemirror" name="mixcode[css]" id="mixcode_template_css" cols="30" rows="10"><?php echo esc_html(get_post_meta($post->ID, 'css', true)); ?></textarea>
       </div>
       <hr>
       <div class="app-mixcode-form-group">
         <label for="mixcode_template_js"><b>Javascript</b></label>
-        <textarea data-mode="javascript" class="mixcode_codemirror" name="mixcode[js]" id="mixcode_template_js" cols="30" rows="10"><?php echo get_post_meta($post->ID, 'js', true); ?></textarea>
+        <textarea data-mode="javascript" class="mixcode_codemirror" name="mixcode[js]" id="mixcode_template_js" cols="30" rows="10"><?php echo esc_html(get_post_meta($post->ID, 'js', true)); ?></textarea>
       </div>
       <input type="hidden" name="mixcode_fields_nonce" value="<?php echo wp_create_nonce(__FILE__); ?>" />
     </div>
@@ -179,13 +204,13 @@ class MIXCODE {
           || wp_is_post_autosave( $post_id )
           || wp_is_post_revision( $post_id )
         ) {  return false; }
-
-      
-        foreach( $_POST['mixcode'] as $key => $value  ){
+              
+        foreach( $_POST['mixcode'] as $key => $value ) {
           if( empty($value) ){
             delete_post_meta( $post_id, $key );
             continue;
           }
+          // sanitize method cannot be applied, as it is required to save all available html code including iframes          
           update_post_meta( $post_id, $key, trim($value)); 
         }    
         $this -> Twig -> cacheReset();

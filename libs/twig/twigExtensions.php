@@ -16,7 +16,11 @@ class twigExtensions extends AbstractExtension
         ];
     }
     public function debug($data) {
-        d($data);
+        if(function_exists('d')) {
+            d($data);
+        } else {
+            var_dump($data);
+        }
     }
     public function getFunctions() {
         return [
@@ -103,7 +107,11 @@ class twigExtensions extends AbstractExtension
         return pll__($string);
     }
     public function debugs($data) {
-        d($data);
+        if(function_exists('d')) {
+            d($data);
+        } else {
+            var_dump($data);
+        }
     }
     public function print_func($funcName) {
         if(function_exists($funcName)) {
